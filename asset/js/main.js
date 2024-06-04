@@ -54,6 +54,16 @@ tra tutti i vincitori degli scontri, saliranno sul podio i 3 combattenti con la 
 Il torneo non finisce qui! Dopo il primo girone di scontri, non passiamo subito alla premiazione, ma facciamo in modo che i vincitori si scontrino ancora e ancora, finchè non ne resterà solo uno!
 
 ⚠️ L'elenco dei combattenti è rappresentato dall'array **fighters,** quello delle armi dall’array **weapons**. Questi array non vanno modificati!
+
+
+
+# Suggerimenti
+
+- Questo esercizio si svolge interamente nella **console del browser**. Assicurati di stampare il risultato di ogni operazione e di strutturare i messaggi in modo chiaro, esplicitando sempre cosa stai andando a stampare. Dovrebbe essere possibile seguire tutto il flusso dell’applicazione leggendo il **log**.
+
+- *Alcuni **metodi degli array** restituiscono un nuovo array, altri modificano quello originale*. Assicurati di **controllare la documentazione** per evitare sorprese.
+
+- Fai attenzione quando tenti di creare una copia indipendente di un array. L’operatore `=` applicato agli array non trasferisce i valori da una variabile all’altra, ma un effettivo riferimento all’array originale, quindi modificandone uno, si modifica anche l’altro (dal momento che sono in effetti lo stesso array).
 */
 
 
@@ -159,4 +169,44 @@ const fighters = [
         power: 250 
     }
 ];
+// uso del ciclo for per stampare in console tutte le armi presenti nell'array
+for (let i = 0; i < weapons.length; i++) {
+    
+    const weaponsEl = weapons[i];
+    
+    console.log(weaponsEl);
+}
 
+// Funzione per ottenere un index
+function getRandomWeapon() {
+    
+    return Math.floor(Math.random() * 12);
+
+}
+
+// Funzione per mescolare un array
+function randomWeaponArray(weapons) {
+    
+    for (let i = weapons.length - 1; i > 0; i--) {
+        
+        const weapon = getRandomWeapon(i + 1);
+        
+        [weapons[i], weapons[weapon]] = [weapons[weapon], weapons[i]];
+    }
+}
+
+// Mescola l'array delle armi
+randomWeaponArray(weapons);
+
+// Assegna un'arma casuale a ciascun combattente
+fighters.forEach(fighter => {
+    // Arma casuale dall'array delle armi
+    const randomWeapon = weapons.pop();
+    // Assegna l'arma al combattente
+    fighter.weapon = randomWeapon;
+    
+    console.log(`${fighter.name} ha scelto l'arma ${randomWeapon.name}`);
+});
+
+// Ora l'array delle armi contiene solo le armi rimanenti non assegnate
+console.log("Armi rimanenti:", weapons);

@@ -177,7 +177,7 @@ for (let i = 0; i < weapons.length; i++) {
     console.log(weaponsEl);
 }
 
-// Funzione per ottenere un index
+// Funzione per ottenere un i casuale
 function getRandomWeapon() {
     
     return Math.floor(Math.random() * 12);
@@ -210,3 +210,17 @@ fighters.forEach(fighter => {
 
 // Ora l'array delle armi contiene solo le armi rimanenti non assegnate
 console.log("Armi rimanenti:", weapons);
+
+// Genera un ottenere un numero casuale tra 1 e 100
+const fighterTraining = Math.floor(Math.random() * 100) + 1;
+
+// Allenamento per ogni combattente
+fighters.forEach(fighter => {
+    // Genera un moltiplicatore casuale
+    const multiplier = fighterTraining;
+    
+    // Incrementa la potenza del combattente
+    fighter.power *= multiplier;
+    
+    console.log(`${fighter.name} si è allenato e la sua potenza è ora di: ${fighter.power}`);
+});

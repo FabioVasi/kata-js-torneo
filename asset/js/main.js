@@ -168,21 +168,11 @@ const fighters = [
     }
 ];
 
-// Ciclo for per stampare in console tutti i combattenti presenti nell'array
-for (let i = 0; i < fighters.length; i++) {
-    
-    const fightersEl = fighters[i];
-    
-    console.log(fightersEl);
-}
+// Stampo in console tutti i combattenti presenti nell'array con il relativo potere
+console.table(fighters);
 
-// Ciclo for per stampare in console tutte le armi presenti nell'array
-for (let i = 0; i < weapons.length; i++) {
-    
-    const weaponsEl = weapons[i];
-    
-    console.log(weaponsEl);
-}
+// Stampo in console tutte le armi presenti nell'array con il relativo potere
+console.table(weapons);
 
 // Funzione per ottenere un index casuale
 function getRandomWeapon() {

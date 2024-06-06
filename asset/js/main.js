@@ -66,8 +66,6 @@ Il torneo non finisce qui! Dopo il primo girone di scontri, non passiamo subito 
 - Fai attenzione quando tenti di creare una copia indipendente di un array. L’operatore `=` applicato agli array non trasferisce i valori da una variabile all’altra, ma un effettivo riferimento all’array originale, quindi modificandone uno, si modifica anche l’altro (dal momento che sono in effetti lo stesso array).
 */
 
-
-
 const fighters = [
     {
         name: 'Freezer',
@@ -220,24 +218,21 @@ fighters.forEach(fighter => {
 // Ora l'array delle armi contiene solo le armi rimanenti non assegnate
 console.log("Armi rimanenti:", weapons);
 
-// Genera un ottenere un numero casuale tra 1 e 100
-const fighterTraining = Math.floor(Math.random() * 100) + 1;
-
 // Allenamento per ogni combattente
 fighters.forEach(fighter => {
-    // Genera un moltiplicatore casuale
-    const multiplier = fighterTraining;
+    // Genera un numero casuale tra 1 e 100 per ogni combattente
+    const fighterTraining = Math.floor(Math.random() * 100) + 1;
     
     // Incrementa la potenza del combattente
-    fighter.power *= multiplier;
+    fighter.power *= fighterTraining;
     
     console.log(`${fighter.name} si è allenato e la sua potenza è ora di: ${fighter.power}`);
 });
 
-// Qualificazione: escludi chi non ha raggiunto almeno 2000 di potenza
+// Qualificazione valida per chi ha raggiunto almeno 2000 di potenza
 const qualifiedFighters = fighters.filter(fighter => fighter.power >= 2000);
 
-// Combattenti qualificati
+// Combattenti qualificati al torneo
 console.log("Combattenti qualificati:");
 
 qualifiedFighters.forEach(fighter => {
@@ -267,6 +262,8 @@ if (qualifiedFighters.length % 2 !== 0) {
 // Combattimento tra i partecipanti
 console.log("Risultati dei combattimenti:");
 
+const winners = [];
+
 for (let i = 0; i < qualifiedFighters.length; i++) {
    
     if (i % 2 === 0 && i + 1 < qualifiedFighters.length) {
@@ -279,15 +276,39 @@ for (let i = 0; i < qualifiedFighters.length; i++) {
 
             console.log(`${fighter1.name} vince contro ${fighter2.name}`);
 
+            winners.push(fighter1);
+
         } else if (fighter1.power < fighter2.power) {
 
             console.log(`${fighter2.name} vince contro ${fighter1.name}`);
 
+            winners.push(fighter2);
+
         } else {
 
             console.log(`${fighter1.name} vince contro ${fighter2.name} (parità, gioca in casa)`);
+
+            winners.push(fighter1);
+            
         }
     }
-
 };
 
+// Ordinare i vincitori in base alla potenza in ordine decrescente
+winners.sort(function(a, b) {
+    
+    return b.power - a.power;
+
+});
+
+// Selezionare i primi tre per il podio
+const podium = winners.slice(0, 3);
+
+// Stampare i vincitori del podio
+console.log("Podio:");
+
+podium.forEach(function(winner, index) {
+
+    console.log((index + 1) + "° posto: " + winner.name + " con una potenza di " + winner.power);
+
+});

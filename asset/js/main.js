@@ -169,7 +169,16 @@ const fighters = [
         power: 250 
     }
 ];
-// uso del ciclo for per stampare in console tutte le armi presenti nell'array
+
+// Ciclo for per stampare in console tutti i combattenti presenti nell'array
+for (let i = 0; i < fighters.length; i++) {
+    
+    const fightersEl = fighters[i];
+    
+    console.log(fightersEl);
+}
+
+// Ciclo for per stampare in console tutte le armi presenti nell'array
 for (let i = 0; i < weapons.length; i++) {
     
     const weaponsEl = weapons[i];
@@ -177,7 +186,7 @@ for (let i = 0; i < weapons.length; i++) {
     console.log(weaponsEl);
 }
 
-// Funzione per ottenere un i casuale
+// Funzione per ottenere un index casuale
 function getRandomWeapon() {
     
     return Math.floor(Math.random() * 12);
@@ -230,13 +239,55 @@ const qualifiedFighters = fighters.filter(fighter => fighter.power >= 2000);
 
 // Combattenti qualificati
 console.log("Combattenti qualificati:");
+
 qualifiedFighters.forEach(fighter => {
+
     console.log(`${fighter.name} con una potenza di ${fighter.power}`);
+
 });
 
 // Combattenti squalificati dal torneo
 const disqualifiedFighters = fighters.filter(fighter => fighter.power < 2000);
+
 console.log("Combattenti non qualificati:");
+
 disqualifiedFighters.forEach(fighter => {
+
     console.log(`${fighter.name} con una potenza di: ${fighter.power}`);
+
 });
+
+// L'elenco dei combattenti qualificati deve essere pari altrimenti aggiungo un robot come partecipante
+if (qualifiedFighters.length % 2 !== 0) {
+    
+    qualifiedFighters.push({ name: 'Robot', power: 4000 });
+
+};
+
+// Combattimento tra i partecipanti
+console.log("Risultati dei combattimenti:");
+
+for (let i = 0; i < qualifiedFighters.length; i++) {
+   
+    if (i % 2 === 0 && i + 1 < qualifiedFighters.length) {
+        
+        const fighter1 = qualifiedFighters[i];
+        
+        const fighter2 = qualifiedFighters[i + 1];
+
+        if (fighter1.power > fighter2.power) {
+
+            console.log(`${fighter1.name} vince contro ${fighter2.name}`);
+
+        } else if (fighter1.power < fighter2.power) {
+
+            console.log(`${fighter2.name} vince contro ${fighter1.name}`);
+
+        } else {
+
+            console.log(`${fighter1.name} vince contro ${fighter2.name} (parità, gioca in casa)`);
+        }
+    }
+
+};
+

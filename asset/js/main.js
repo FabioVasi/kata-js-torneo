@@ -224,3 +224,19 @@ fighters.forEach(fighter => {
     
     console.log(`${fighter.name} si è allenato e la sua potenza è ora di: ${fighter.power}`);
 });
+
+// Qualificazione: escludi chi non ha raggiunto almeno 2000 di potenza
+const qualifiedFighters = fighters.filter(fighter => fighter.power >= 2000);
+
+// Combattenti qualificati
+console.log("Combattenti qualificati:");
+qualifiedFighters.forEach(fighter => {
+    console.log(`${fighter.name} con una potenza di ${fighter.power}`);
+});
+
+// Combattenti squalificati dal torneo
+const disqualifiedFighters = fighters.filter(fighter => fighter.power < 2000);
+console.log("Combattenti non qualificati:");
+disqualifiedFighters.forEach(fighter => {
+    console.log(`${fighter.name} con una potenza di: ${fighter.power}`);
+});

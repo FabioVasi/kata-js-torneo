@@ -220,7 +220,7 @@ fighters.forEach(fighter => {
 });
 
 // Qualificazione valida per chi ha raggiunto almeno 2000 di potenza
-const qualifiedFighters = fighters.filter(fighter => fighter.power >= 2000);
+let qualifiedFighters = fighters.filter(fighter => fighter.power >= 2000);
 
 // Combattenti qualificati al torneo
 console.log("Combattenti qualificati:");
